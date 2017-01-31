@@ -1,0 +1,205 @@
+Linux notes:
+
+df -h //show mounted drives
+lsblk //show all attached drives (even if not mounted)
+sudo mount /dev/sdc1 /media/mydir //mount directory to specific partition
+free -h // show mem usage in gbs
+
+ip route show
+ip addr show
+netstat -i, -r(route)
+
+host google.com (show ip addr of google)
+cat /etc/resolv.conf - dns info
+
+ps aux //list all processes
+/etc/passwd 
+id r380928 (group info)
+who (check whos logged in)
+last
+sudo useradd -m rikin
+cd /home/rikin
+ls -a (includes hidden files!)
+ls -lS (sort by file size desc)
+ls -d */ (list out only the directories)
+cd /etc/skel    ls -a
+sudo passwd rikin (then enter passwd)
+
+cat command:
+
+cat -b list1.txt (show line numbers but not on blank lines)
+cat -n list1.txt (show line numbers for all lines)
+cat -s list1.txt (squeeze linebreaks to just 1 line break) - doesnt change contents of file
+cat -E list1.txt (shows end of line w/ $ sign)
+cat > test.txt ( copy contents to test.txt)
+cat >> test.txt (append to file)
+cat list1.txt list2.txt > out.txt (added contents of two files into one)
+
+
+mkdir command
+
+mkdir -p names/mark (create dir structure w/ -p param to force dir creation)
+mkdir -p names/{john,tom,bob}  //create multiple sub directories (no spaces!)
+
+mkdir -p a/b/c/d/e
+rmdir -pv a/b/c/d/e (v for verbose)
+ls -R (show all directories)
+rm -rv a/b (removes directories even w/ files, r = recursive)
+
+cp command
+
+cp file1.txt file2.txt
+cp -i file1.txt //i for interactive (overwrite?)
+cp ../file1.txt ../file2.txt . (copy 2 files from one dir above into curr dir)
+cp -R dir1 dir3 (copy dir from one to another, have to use -R Recursive flag)
+
+mv command
+
+mv file1.txt file2.txt //src target
+mv file3.txt dir1/
+ls dir1/
+mv -i file3.txt dir1 (-i interactive for overwrite)
+mv dir1 dir2
+mv dir2 dir3 (where dir3  doesnt exsist) - then it copies contents of dir into dir3 (will not move dir2 inside dir3)
+//if dir3 already exists then it will create dir2 inside dir3
+mv -v file3.txt dir3 (verbose)
+
+
+less command
+
+less big.txt
+space to jump pages
+up and down arrows to go scroll up /down
+B - one page up at a time
+G - shift+G - go to end of file
+1G or g - go to top of file
+/book - search for book occurences in file
+click n for next occurence
+?book to search from down to up (n for next)
+q to quite less command
+
+
+touch file1 (updates timestamp of file if file already exists, if not creates a new file)
+
+nano file.txt (creates a new file, but have to save it first )
+ctrl+o to save file
+
+
+sudo = super user do
+allows user to extra privs as admin or power user
+ex: sudo mkdir /etc/newdir 
+sudo -s //changes to root user
+
+top command - dynamic real time view of your computer - see which processes consuming process/cpu
+type s to change delay from 3 secs(default) to another number in seconds
+type i filter out idle processes
+top , then k to kill specific process id
+
+kill command
+
+killof <process name> // gets pid
+kill pid
+kill -KILL pid //hard kill
+kill -9 pid //hard kill
+ps -ux //gets all processes for current user ..use -aux for all users
+ps -U <username> //gets all processes for specific user name
+ps -C <processname> //gets you all instances of process
+
+file permissions
+
+when you do ls -l you see:
+
+-rw-rw-r--
+type of file - directory, binary, character, normal file(-)
+next 3: owner of file
+next 3: group of file
+next 3: everyone else
+then symbolic link
+then name of owner of file
+then name of group of file
+filesize
+date when created
+filename
+
+chmod command
+chmod o+x //add executable permission to others category
+chmod o+w // add write position
+chmod g+x // add exe for group
+chmod g-wx //remove write and exe for group
+chmod ug=rwx // set permissions for user and group of file to rwx
+chmod ugo-rwx //removes all permissions from everyone
+chmod a-rwx // a = all
+chmod u+rw,g=rw,o+r //another way to give multiple categories permissions
+//these are called symbolic notations
+
+chmod using octal number notation
+chmod 000 file.txt
+chmod 777 file.txt
+
+which bash //tells you where bash location is
+
+scripting:
+
+#!/bin/bash  //hashBang - always first line of script
+to execute script (needs execute permission): 
+. /myscript.sh
+
+which ls //returns location where ls command is located
+whatis ls //gives a short description of what the command does (also can see from man ls)
+whatis grep
+whatis cat
+
+useradd command
+
+sudo useradd mark -m -s /bin/bash -g users //-m home directory //-s allow user to shell at following location //-g user group definition
+//-c comments for user
+create user w/ root access level
+sudo password mark //provide a new password for newly created user 
+
+userdel command
+
+sudo userdel mark //doesn't delete folder from home dir
+sudo userdel -r mark //deletes folder as well
+
+groups:
+
+groups //checks which group user is in
+cat /etc/group
+
+sudo groupadd Java //adding a new group
+sudo groupdel Java //deleting a group
+sudo gpasswd -a rikin Java //adding user to a specific group  -d for deleting user from group
+sudo gpasswd -d rikin Java //deleting user from a specific group
+
+.bashrc //file used to set up initial script when terminal window opens
+ex: add alias ls='ls -l' //anytime you type ls , it will type in long list format
+
+df command  //avail diskspace on filesystem
+df -h //makes it human readable
+du -h //tells you how much memory is used w/in a specific directory
+du -sh //gives you only the summary and not details regarding each file
+free //gives u used and free and cached space used by kernel
+free -h //human readable ..-m megabytes -g gigabytes
+
+watch free -h //repeatedly execute specific command
+watch -n 1 free -m
+watch -n 0,5 free -m
+
+head 10 wifi.log
+tail 10 wifi.log
+tail -f wifi.log
+head wifi.log install.log
+
+find command
+
+find /home/rikin -name test.html //find test.html in specifed dir
+find /home -name *.txt //find using wildcard
+find / -name wifi.log //will need to use sudo here due to permission denied exception
+find /home/rikin -mtime -2 //give me files from 2 day ago till now
+
+wc command - word count
+wc test.txt //returns lines wordcount and characters and file name 
+wc -c test.txt //returns # of characters , -l for line count , -w for word count only
+wc -L test.txt //returns length of longest line
+
+
