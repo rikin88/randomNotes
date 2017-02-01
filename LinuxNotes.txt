@@ -203,3 +203,30 @@ wc -c test.txt //returns # of characters , -l for line count , -w for word count
 wc -L test.txt //returns length of longest line
 
 
+cal command : calendar
+cal //displays calendar
+ncal //weekdays on lefthand side
+cal 2017 //displays whole year
+cal 2 2014 //displays feb 2014 month
+
+date command
+date // print todays date
+date -s "11/20/2003 12:48:00" //setting the date of the system
+date +%d%h%y //04Jan17
+date "+%d-%h-%y" //04-Jan/17
+
+combining commands:
+date;cal;pwd //use semicolon to combine commands // if previous command fails, it will continue execution of next command
+ls && pwd && date && cal // same as above using && - if previous command fails it will stop execution
+
+LS || pwd // if first execution fails then it will execute next command
+
+sudo apt-get install php5
+sudo apt-get remove php5
+sudo apt-get remove --purge php5 //removes all configuration files (ie. transitive dependencies as well)
+sudo apt-get autoremove 
+
+ifconfig 
+ifconfig eth1
+ifconfig eth0 down (use sudo) //disconnect internet connection
+ifconfig eth0 up //bring up internet connection
