@@ -230,3 +230,25 @@ ifconfig
 ifconfig eth1
 ifconfig eth0 down (use sudo) //disconnect internet connection
 ifconfig eth0 up //bring up internet connection
+
+tar command:
+
+tar -cvf test.tar test //to tar a test folder -c create v verbose f specify filename
+tar -xvf test test.tar //extract to folder - specify the tar file -x extract
+tar -czvf test.tar.gz //crate gzip version of tar // z has to come after c
+tar -xzvf test.tar.gz 
+
+grep command:
+
+global regular expression print
+man tar > file.txt
+grep "options" file.txt //search for options in file file.txt //case sensitive by default
+grep -i "options" file.txt //case insensitive
+grep -n "options" file.txt //print line number of matches
+grep -n "some options" file.txt //can search for sentences
+
+grep -n "some options" file.txt file2.txt file3.txt //searching in multiple files
+grep -n "some options" * //wildcard - search for all the files 
+
+grep -nv "some options" //invert match // show all lines which dont match given pattern
+
