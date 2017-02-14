@@ -252,3 +252,40 @@ grep -n "some options" * //wildcard - search for all the files
 
 grep -nv "some options" //invert match // show all lines which dont match given pattern
 
+netstat command:
+
+netstat -a //shows all connections avail on system
+netstat -a | less // pipe to less command so can scroll through
+netstat -at //tcp connections
+netstat -au //udp connections
+netstat -l | less // all ports in listening state
+netstat -lt | less //all ports listening with tcp
+netstat -s | less //statistics 
+netstat -st | less //stats for only tcp or -u for udp
+netstat -pt | less //pids for tcp 
+netstat -p | less //pids for all
+netstat -n  //view numeric ports
+netstat -c // shows status continously
+netstat -ie //same as ifconfig (interface extended) use if ifconfig is not avail
+netstat -an | grep ':80' // shows all ports w/ 8
+
+netstat -nr /look up default gateway ip addr
+
+NAT - Network Address Translation
+
+ipv4 - 32 bits (4 octets)
+ipv6 - 128 bits (16 octets)
+
+
+tcpdump command:
+
+on one terminal 
+sudo tcpdump -n host 8.8.8.8 (google)
+
+on 2nd terminal
+ping -c3 8.8.8.8
+
+to check dns requests sent from server
+sudo tcpdump -n port 53
+
+printf 'HEAD / HTTP/1.1\r\nHost: example.net\r\n\r\n' | nc example.net 80
