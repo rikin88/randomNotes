@@ -288,4 +288,52 @@ ping -c3 8.8.8.8
 to check dns requests sent from server
 sudo tcpdump -n port 53
 
-printf 'HEAD / HTTP/1.1\r\nHost: example.net\r\n\r\n' | nc example.net 80
+more linux notes:
+
+du | sort -nr //displays list of directoreis and how much space they consume largest to smallest
+
+find . -type f -print | wc -l
+
+tar tzvf <nameOfFile>.tar.gz | less
+
+mkdir {2007..2009}-{0..9} {2007..2009}-{10..12} //creates multiple new directories 
+
+printenv | less //shows system env variables
+
+ps x // list all processes on system
+
+
+useful unix files:
+
+Login shell sessions:
+
+/etc/profile - global config script for all users
+~/.bash_profile  - user's personal setup file - can override or extend settings in startup script
+
+Non-Login shell sessions:
+/etc/bash.bashrc - global config script for all users 
+~/.bashrc - user's personal startup file - can extend or override global settings
+
+
+netstat -nulp //to view udp conenctions listening (no name resolution -n) -p to display progrm name running on port
+netstat -ntlp //tcp
+netstat -nr //show routing table  -n to supress name resolution
+
+****
+
+uname -a //shows kernel version etc
+
+show ip addresses:
+ifconfig  (old way)
+ip addr show //shows all devices
+ip addr show eth0 //shows only this device
+
+
+checking diskspace
+df -ah 
+
+checking if service is running
+systemctl status udev  //where udev is service name
+
+du -sh code //check file size of dir structure - very handy
+
